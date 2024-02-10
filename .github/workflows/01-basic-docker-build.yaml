@@ -46,6 +46,11 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: linux/amd64
+
+      # for simple tests (npm test, etc.) just run a local image in docker
+      - name: Unit Testing in Docker
+        run: |
+          docker run --rm ${{ github.run_id }} echo "run test commands here"
       
       # add-cve-scanning: Common Vulnerabilities and Exposures scanning
       - name: Run Trivy for all CVEs (non-blocking)
@@ -81,7 +86,7 @@ jobs:
           flavor: |
             latest=false
           tags: |
-            type=raw,value=07
+            type=raw,value=0８
       
       - name: Docker build and Push to Docker Hub
         uses: docker/build-push-action@v5
