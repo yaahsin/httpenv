@@ -5,7 +5,7 @@ RUN go build httpenv.go
 
 # Test Stage
 FROM build AS test
-COPY httpenv_test.go /go
+COPY httpenv.go /go
 RUN go test -v
 
 # final stage
