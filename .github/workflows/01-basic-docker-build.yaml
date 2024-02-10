@@ -13,6 +13,10 @@ jobs:
     name: Build Image
     runs-on: ubuntu-latest
     steps:
+        # Build with Multi-Platform >> simulate various hardware architectures
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+    
         # Build with BuildKit Cache
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -30,3 +34,4 @@ jobs:
           tags: yahsin/docker-ci-automation:02
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
